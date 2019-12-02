@@ -126,7 +126,4 @@ fi
   echo $vPrefix > v_prefix.txt
   echo $vCount > v_count.txt
 
-  echo 'Run GenConfig.sh to configure IP for proxy access'
-  echo 'Run GenNewIp.sh to generate new IPs'
-
   #}
