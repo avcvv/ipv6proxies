@@ -4,21 +4,22 @@
 # Version: 1.0
 # PLEASE ONLY USE THIS FOR CENTOS 7.X
 
- ulimit -u unlimited -n 999999 -s 16384
+  ulimit -u unlimited -n 999999 -s 16384
   echo ====================================
-  echo  Stop 3proxy
+  echo  Stop 3proxy: OK!
   echo ====================================
 
-  kill -9 $(pidof 3proxy)
+  #kill -9 $(pidof 3proxy)
+  pkill 3proxy
 
   echo ====================================
-  echo  Remove old ip.list
+  echo  Remove old ip.list: OK!
   echo ====================================
 
   rm -rf ip.list
 
   echo ====================================
-  echo  Generate IPs
+  echo  Generate IPs: OK!
   echo ====================================
 
   #./random-ipv6_64-address-generator.sh > ip.list
@@ -62,13 +63,13 @@
 
 
   echo ====================================
-  echo        Restarting Network
+  echo      Restarting Network: OK!
   echo ====================================
 
   service network restart
 
   echo ====================================
-  echo      Adding IPs to interface
+  echo      Adding IPs to interface: OK!
   echo ====================================
 
   for i in `cat ip.list`; do
@@ -78,8 +79,9 @@
 
 
   echo ====================================
-  echo    Start 3proxy
+  echo      Start 3proxy: OK!
   echo ====================================
+  
+  ulimit -u unlimited -n 999999 -s 16384
 
-  pkill 3proxy
   /root/3proxy/bin/3proxy /root/3proxy/3proxy.cfg
