@@ -23,12 +23,13 @@ fi
 	make -f Makefile.Linux
 	ulimit -u unlimited -n 999999 -s 16384
 	
-	wget https://github.com/avcvv/ipv6proxies/raw/master/3proxy.cfg
+	wget https://github.com/avcvv/ipv6proxies/raw/master/3proxy.sh
 	wget https://github.com/avcvv/ipv6proxies/raw/master/GenNewIp.sh
 	chmod +x GenNewIp.sh
+	chmod +x 3proxy.sh
 	
-	sed -i "s/1.1.1.1/$vIp2/g" /root/3proxy/3proxy.cfg
-	sed -i "s/i127.0.0.1/i$vIp/g" /root/3proxy/3proxy.cfg
+	sed -i "s/1.1.1.1/$vIp2/g" /root/3proxy/3proxy.sh
+	sed -i "s/i127.0.0.1/i$vIp/g" /root/3proxy/3proxy.sh
 
   echo ====================================
   echo  Stop 3proxy
@@ -111,7 +112,7 @@ fi
   echo      Generate 3proxy.cfg
   echo ====================================
 
-  #/root/3proxy/3proxy.sh > 3proxy.cfg
+  /root/3proxy/3proxy.sh > 3proxy.cfg
 
 
   echo ====================================
