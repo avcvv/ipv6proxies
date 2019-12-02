@@ -9,11 +9,12 @@ if [ "x$(id -u)" != 'x0' ]; then
     exit 1
 fi
 
-function StartTheProcess()
-{
+#function StartTheProcess()
+#{
 	read -r -p "What is your IPv6 prefix? eg:(2604:180:2:11c7) " vPrefix
 	read -r -p "Input here server IP: " vIp
 	read -r -p "Input quantity IP for generate " vCount
+	read -r -p "Input IP who get access to this IPs " vIp2
 
 	yum -y groupinstall "Development Tools"
   yum -y install gcc zlib-devel openssl-devel readline-devel ncurses-devel wget tar dnsmasq net-tools iptables-services system-config-firewall-tui nano iptables-services
@@ -23,11 +24,14 @@ function StartTheProcess()
 	ulimit -u unlimited -n 999999 -s 16384
 	
 	wget https://github.com/avcvv/ipv6proxies/raw/master/3proxy.cfg
+	
+	sed -i "s/1.1.1.1/$vIp2/g" /root/3proxy/3proxy.cfg
+	sed -i "s/i127.0.0.1/i$vIp/g" /root/3proxy/3proxy.cfg
 
   echo ====================================
   echo  Stop 3proxy
   echo ====================================
-
+  
   kill -9 $(pidof 3proxy)
 
   echo ====================================
@@ -115,6 +119,10 @@ function StartTheProcess()
 
   /root/3proxy/bin/3proxy /root/3proxy/3proxy.cfg
   
+  
+  echo $vPrefix > v_prefix.txt
+  echo $vCount > v_count.txt
+
   echo "Run GenConfig.sh to configure IP for proxy access"
 
-  }
+  #}
