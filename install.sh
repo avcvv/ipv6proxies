@@ -24,6 +24,8 @@ fi
 	ulimit -u unlimited -n 999999 -s 16384
 	
 	wget https://github.com/avcvv/ipv6proxies/raw/master/3proxy.cfg
+	wget https://github.com/avcvv/ipv6proxies/raw/master/GenNewIp.sh
+	chmod +x GenNewIp.sh
 	
 	sed -i "s/1.1.1.1/$vIp2/g" /root/3proxy/3proxy.cfg
 	sed -i "s/i127.0.0.1/i$vIp/g" /root/3proxy/3proxy.cfg
