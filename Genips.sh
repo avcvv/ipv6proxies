@@ -82,7 +82,7 @@
   echo      Generate 3proxy.cfg
   echo ====================================
 
-  /root/3proxy/3proxy.sh > 3proxy.cfg
+  /root/3proxy/3proxycfg.sh > 3proxy.cfg
   
   echo ====================================
   echo      Start 3proxy: OK!
