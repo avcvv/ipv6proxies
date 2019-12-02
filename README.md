@@ -9,11 +9,11 @@ chmod +x install.sh
 ./install.sh
 
 For Generate new ipv6 on interface run: 
-./GenNewIp.sh
+./Genips.sh
 
 
-Allow access for this IPs edit 3proxy.sh: 
+Allow access for this IPs edit 3proxycfg.sh: 
 
-echo "allow * WRITE YOUR IP"
+echo "allow * WRITE YOUR IP" :: Your IP which will be using this proxy
 
-Run command ./GenNewIp.sh
+Run command ./Genips.sh
