@@ -15,6 +15,8 @@ echo #allow admin
 echo "auth iponly"
 echo "allow * 1.1.1.1"
 
+
+
 port=30000
 count=1
 for i in `cat ip.list`; do
