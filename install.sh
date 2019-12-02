@@ -12,7 +12,8 @@ fi
 function StartTheProcess()
 {
 	read -r -p "What is your IPv6 prefix? eg:(2604:180:2:11c7) " vPrefix
-	read -r -p "What is your IP? " vIp
+	read -r -p "Input here server IP: " vIp
+	read -r -p "Input quantity IP for generate " vCount
 
 	yum -y groupinstall "Development Tools"
   yum -y install gcc zlib-devel openssl-devel readline-devel ncurses-devel wget tar dnsmasq net-tools iptables-services system-config-firewall-tui nano iptables-services
@@ -20,6 +21,8 @@ function StartTheProcess()
 	cd 3proxy
 	make -f Makefile.Linux
 	ulimit -u unlimited -n 999999 -s 16384
+	
+	wget https://github.com/avcvv/ipv6proxies/raw/master/3proxy.cfg
 
   echo ====================================
   echo  Stop 3proxy
@@ -50,11 +53,14 @@ function StartTheProcess()
   #read -p "Enter Num IPs to gen: " ipcount
   #read -p "Put your ipv6 network prefix eg: 2604:180:2:b93: " network
 
-  #network=$network
-  #MAXCOUNT=$ipcount
+  network=$vPrefix
+  netip=$vIp
+  MAXCOUNT=$vCount
+  
+  
 
-  network=2604:180:2:11c7
-  MAXCOUNT=1500
+  #network=2604:180:2:11c7
+  #MAXCOUNT=1500
 
   array=( 1 2 3 4 5 6 7 8 9 0 a b c d e f )
   #MAXCOUNT=1500
@@ -99,7 +105,7 @@ function StartTheProcess()
   echo      Generate 3proxy.cfg
   echo ====================================
 
-  /root/3proxy/3proxy.sh > 3proxy.cfg
+  #/root/3proxy/3proxy.sh > 3proxy.cfg
 
 
   echo ====================================
@@ -108,5 +114,7 @@ function StartTheProcess()
 
 
   /root/3proxy/bin/3proxy /root/3proxy/3proxy.cfg
+  
+  echo "Run GenConfig.sh to configure IP for proxy access"
 
   }
