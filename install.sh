@@ -13,8 +13,8 @@ fi
 #{
 	read -r -p "What is your IPv6 prefix? eg:(2604:180:2:11c7) " vPrefix
 	read -r -p "Input here server IP: " vIp
-	read -r -p "Input quantity IP for generate " vCount
-	read -r -p "Input IP who get access to this IPs " vIp2
+	read -r -p "Input quantity IP for generate: " vCount
+	read -r -p "Input IP who get access to this IPs: " vIp2
 
 	yum -y groupinstall "Development Tools"
   yum -y install gcc zlib-devel openssl-devel readline-devel ncurses-devel wget tar dnsmasq net-tools iptables-services system-config-firewall-tui nano iptables-services
@@ -123,6 +123,7 @@ fi
   echo $vPrefix > v_prefix.txt
   echo $vCount > v_count.txt
 
-  echo "Run GenConfig.sh to configure IP for proxy access"
+  echo 'Run GenConfig.sh to configure IP for proxy access'
+  echo 'Run GenNewIp.sh to generate new IPs'
 
   #}
