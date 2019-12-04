@@ -25,8 +25,8 @@ fi
 	
 	wget https://github.com/avcvv/ipv6proxies/raw/master/3proxycfg.sh
 	wget https://github.com/avcvv/ipv6proxies/raw/master/Genips.sh
-	chmod +x GenNewIp.sh
-	chmod +x 3proxy.sh
+	chmod 0755 Genips.sh
+	chmod 0755 3proxycfg.sh
 	
 	sed -i "s/1.1.1.1/$vIp2/g" /root/3proxy/3proxycfg.sh
 	sed -i "s/i127.0.0.1/i$vIp/g" /root/3proxy/3proxycfg.sh
