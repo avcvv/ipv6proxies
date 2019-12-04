@@ -12,9 +12,9 @@ fi
 #function StartTheProcess()
 #{
 	read -r -p "What is your IPv6 prefix? eg:(2604:180:2:11c7) " vPrefix
-	read -r -p "Input here server IP: " vIp
-	read -r -p "Input quantity IP for generate: " vCount
-	read -r -p "Input IP who get access to this IPs: " vIp2
+	read -r -p "VPS IP: " vIp
+	read -r -p "Quantity IP for generate: " vCount
+	read -r -p "IP who get access to this Proxies: " vIp2
 
 	yum -y groupinstall "Development Tools"
   yum -y install gcc zlib-devel openssl-devel readline-devel ncurses-devel wget tar dnsmasq net-tools iptables-services system-config-firewall-tui nano iptables-services
