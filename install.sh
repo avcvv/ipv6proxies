@@ -125,5 +125,12 @@ fi
   
   echo $vPrefix > v_prefix.txt
   echo $vCount > v_count.txt
+  
+  echo ====================================
+  echo      Stop Firewall: OK!
+  echo ====================================
+  
+  systemctl stop firewalld
+  systemctl disable firewalld
 
   #}
