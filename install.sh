@@ -32,7 +32,7 @@ fi
 	sed -i "s/i127.0.0.1/i$vIp/g" /root/3proxy/3proxycfg.sh
 
   echo ====================================
-  echo  Stop 3proxy
+  echo      Stop 3proxy:  OK!
   echo ====================================
   
   kill -9 $(pidof 3proxy)
@@ -44,7 +44,7 @@ fi
   rm -rf ip.list
 
   echo ====================================
-  echo  Generate IPs
+  echo      Generate IPs: OK!
   echo ====================================
 
   #./random-ipv6_64-address-generator.sh > ip.list
@@ -94,13 +94,13 @@ fi
 
 
   echo ====================================
-  echo        Restarting Network
+  echo      Restarting Network: OK!
   echo ====================================
 
   service network restart
 
   echo ====================================
-  echo      Adding IPs to interface
+  echo      Adding IPs to interface: OK!
   echo ====================================
 
   for i in `cat ip.list`; do
@@ -109,14 +109,14 @@ fi
   done
 
   echo ====================================
-  echo      Generate 3proxy.cfg
+  echo      Generate 3proxy.cfg: OK!
   echo ====================================
 
   /root/3proxy/3proxycfg.sh > 3proxy.cfg
 
 
   echo ====================================
-  echo	  Start 3proxy
+  echo      Start 3proxy: OK!
   echo ====================================
 
 
