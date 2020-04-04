@@ -15,6 +15,9 @@ fi
 	read -r -p "VPS IP: " vIp
 	read -r -p "Quantity IP for generate: " vCount
 	read -r -p "IP who get access to this Proxies: " vIp2
+	
+	echo $vPrefix > v_prefix.txt
+        echo $vCount > v_count.txt
 
 	yum -y groupinstall "Development Tools"
   yum -y install gcc zlib-devel openssl-devel readline-devel ncurses-devel wget tar dnsmasq net-tools iptables-services system-config-firewall-tui nano iptables-services
@@ -126,9 +129,6 @@ fi
 
   /root/3proxy/bin/3proxy /root/3proxy/3proxy.cfg
   
-  
-  echo $vPrefix > v_prefix.txt
-  echo $vCount > v_count.txt
   
   echo ====================================
   echo      Stop Firewall: OK!
