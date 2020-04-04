@@ -16,8 +16,6 @@ fi
 	read -r -p "Quantity IP for generate: " vCount
 	read -r -p "IP who get access to this Proxies: " vIp2
 	
-	echo $vPrefix > v_prefix.txt
-        echo $vCount > v_count.txt
 
 	yum -y groupinstall "Development Tools"
   yum -y install gcc zlib-devel openssl-devel readline-devel ncurses-devel wget tar dnsmasq net-tools iptables-services system-config-firewall-tui nano iptables-services
@@ -37,6 +35,9 @@ fi
 	//extend file limits
 	echo '* hard nofile 999999' >> /etc/security/limits.conf
 	echo '* soft nofile 999999' >> /etc/security/limits.conf
+	
+	echo $vPrefix > v_prefix.txt
+        echo $vCount > v_count.txt
 
   echo ====================================
   echo      Stop 3proxy:  OK!
