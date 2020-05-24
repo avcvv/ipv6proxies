@@ -2,6 +2,9 @@ echo pidfile /root/3proxy/3proxy.pid
 
 echo daemon
 echo maxconn 250
+echo nserver 1.1.1.1
+echo nserver [2606:4700:4700::1111]
+echo nserver [2606:4700:4700::1001]
 echo nserver [2001:4860:4860::8888]
 echo nscache6 65536
 echo nscache 65536
