@@ -7,11 +7,13 @@ fi
 
 echo
       echo ====================================
-      echo -e    "\e[1;226;42m Reset network\e[0m"
+      echo -e    "\e[1;226;42m Reset and configure network\e[0m"
       echo ====================================
       echo
 service network restart
 rm -rf /home/proxy-installer/
+ulimit -u unlimited -n 999999 -s 16384
+systemctl stop firewalld
 
 random() {
 	tr </dev/urandom -dc A-Za-z0-9 | head -c5
@@ -19,6 +21,7 @@ random() {
 }
 
 array=(1 2 3 4 5 6 7 8 9 0 a b c d e f)
+#$(ip64):$(ip64):$(ip64):$(ip64) this is for /64 nwtwork, if you want use /48 set $(ip64):$(ip64):$(ip64):$(ip64):$(ip64)
 gen64() {
 	ip64() {
 		echo "${array[$RANDOM % 16]}${array[$RANDOM % 16]}${array[$RANDOM % 16]}${array[$RANDOM % 16]}"
@@ -37,11 +40,11 @@ install_3proxy() {
 	cd 3proxy
 	make -f Makefile.Linux
 
-    mkdir -p /usr/local/etc/3proxy/{bin,logs,stat}
-    cp src/3proxy /usr/local/etc/3proxy/bin/
-    cp ./scripts/rc.d/proxy.sh /etc/init.d/3proxy
-    chmod +x /etc/init.d/3proxy
-    chkconfig 3proxy on
+    #mkdir -p /usr/local/etc/3proxy/{bin,logs,stat}
+    #cp src/3proxy /usr/local/etc/3proxy/bin/
+    #cp ./scripts/rc.d/proxy.sh /etc/init.d/3proxy
+    #chmod +x /etc/init.d/3proxy
+    #chkconfig 3proxy on
     cd $WORKDIR
 }
 
@@ -114,8 +117,8 @@ yum -y install gcc zlib-devel openssl-devel readline-devel ncurses-devel wget ta
 
 install_3proxy
 
-echo "working folder = /home/proxy-installer"
-WORKDIR="/home/proxy-installer"
+echo "working folder = /root/proxy-installer"
+WORKDIR="/root/proxy-installer"
 WORKDATA="${WORKDIR}/data.txt"
 mkdir $WORKDIR && cd $_
 
@@ -144,7 +147,7 @@ LAST_PORT=$(($FIRST_PORT + $COUNT))
 gen_data >$WORKDIR/data.txt
 gen_iptables >$WORKDIR/boot_iptables.sh
 gen_ifconfig >$WORKDIR/boot_ifconfig.sh
-chmod +x boot_*.sh /etc/rc.local
+#chmod +x boot_*.sh /etc/rc.local
 
 gen_3proxy >/usr/local/etc/3proxy/3proxy.cfg
 
@@ -154,6 +157,10 @@ gen_autoboot() {
          bash ${WORKDIR}/boot_ifconfig.sh
          service 3proxy start
 EOF
+} 
+
+start_3proxy() {
+         /root/3proxy/bin/3proxy /root/3proxy/3proxy.cfg
 } 
 
 gen_autoboot
