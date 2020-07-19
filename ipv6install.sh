@@ -11,7 +11,7 @@ echo
       echo ====================================
       echo
 service network restart
-rm -rf /home/proxy-installer/
+rm -rf /root/proxy-installer/
 ulimit -u unlimited -n 999999 -s 16384
 systemctl stop firewalld
 
@@ -163,8 +163,9 @@ start_3proxy() {
          /root/3proxy/bin/3proxy /root/3proxy/3proxy.cfg
 } 
 
-gen_autoboot
-bash /etc/rc.local
+#gen_autoboot
+##bash /etc/rc.local
 gen_proxy_file_for_user
 upload_proxy
-#bash ${WORKDIR}/boot_ifconfig.sh
+bash ${WORKDIR}/boot_ifconfig.sh
+start_3proxy
