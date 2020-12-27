@@ -8,6 +8,7 @@ echo nserver [2606:4700:4700::1001]
 echo nserver [2001:4860:4860::8888]
 echo nscache6 65536
 echo nscache 65536
+echo stacksize 6000
 echo timeouts 1 5 30 60 180 1800 15 60
 echo setgid 65535
 echo setuid 65535
