@@ -21,13 +21,22 @@ random() {
 }
 
 array=(1 2 3 4 5 6 7 8 9 0 a b c d e f)
-#$(ip64):$(ip64):$(ip64):$(ip64) this is for /64 nwtwork, if you want use /48 set $(ip64):$(ip64):$(ip64):$(ip64):$(ip64)
+#/64 network
 gen64() {
 	ip64() {
 		echo "${array[$RANDOM % 16]}${array[$RANDOM % 16]}${array[$RANDOM % 16]}${array[$RANDOM % 16]}"
 	}
 	echo "$1:$(ip64):$(ip64):$(ip64):$(ip64)"
 }
+
+# /48 network
+gen64_48() {
+	ip64() {
+		echo "${array[$RANDOM % 16]}${array[$RANDOM % 16]}${array[$RANDOM % 16]}${array[$RANDOM % 16]}"
+	}
+	echo "$1:$(ip64):$(ip64):$(ip64):$(ip64):$(ip64)"
+}
+
 install_3proxy() {
       
       echo      
@@ -137,10 +146,11 @@ echo "Internal ip = ${IP4}. Exteranl sub for ip6 = ${IP6}"
 echo
       echo ====================================
       echo -e    "\e[1;226;42m Internal IP = ${IP4}\e[0m"
-      echo -e    "\e[1;226;42m Exteranl sub for ip6 = ${IP6}\e[0m"
+      echo -e    "\e[1;226;42m Sys prefix for ip6 = ${IP6}\e[0m"
       echo Please check this sub twice, for /64 network it looks like 2604:180:2:11c7 for /48 like 2604:180:2
       echo ====================================
       echo
+      
 
 #read COUNT
 #echo -r -p "How many proxy do you want to create? Example 500:  " COUNT
