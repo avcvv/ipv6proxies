@@ -29,7 +29,7 @@ gen64() {
 	echo "$1:$(ip64):$(ip64):$(ip64):$(ip64)"
 }
 
-# /48 network
+#/48 network
 gen64_48() {
 	ip64() {
 		echo "${array[$RANDOM % 16]}${array[$RANDOM % 16]}${array[$RANDOM % 16]}${array[$RANDOM % 16]}"
@@ -103,6 +103,13 @@ gen_data() {
     done
 }
 
+gen_data_48() {
+    seq $FIRST_PORT $LAST_PORT | while read port; do
+        echo "usr$(random)/pass$(random)/$IP4/$port/$(gen64 $IP6)"
+         #echo "usr1/pass1/$IP4/$port/$(gen64 $IP6)"
+    done
+}
+
 gen_iptables() {
     cat <<EOF
     $(awk -F "/" '{print "iptables -I INPUT -p tcp --dport " $4 "  -m state --state NEW -j ACCEPT"}' ${WORKDATA}) 
@@ -166,7 +173,7 @@ gen_iptables >$WORKDIR/boot_iptables.sh
 gen_ifconfig >$WORKDIR/boot_ifconfig.sh
 #chmod +x boot_*.sh /etc/rc.local
 
-gen_3proxy >/usr/local/etc/3proxy/3proxy.cfg
+gen_3proxy >/root/3proxy/3proxy.cfg
 
 gen_autoboot() {
          cat >>/etc/rc.local <<EOF
@@ -184,5 +191,5 @@ start_3proxy() {
 ##bash /etc/rc.local
 #gen_proxy_file_for_user
 #upload_proxy
-#bash ${WORKDIR}/boot_ifconfig.sh
-#start_3proxy
+bash ${WORKDIR}/boot_ifconfig.sh
+start_3proxy
