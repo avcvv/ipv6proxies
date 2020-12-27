@@ -112,9 +112,16 @@ EOF
       echo -e    "\e[1;226;42m Installing tools\e[0m"
       echo ====================================
       echo
+yum -y update
 yum -y groupinstall "Development Tools"
 yum -y install gcc zlib-devel openssl-devel readline-devel ncurses-devel wget tar zip dnsmasq net-tools iptables-services system-config-firewall-tui nano iptables-services bsdtar
 
+
+      echo
+      echo ====================================
+      echo -e    "\e[1;226;42m Installing 3proxy\e[0m"
+      echo ====================================
+      echo
 install_3proxy
 
 echo "working folder = /root/proxy-installer"
@@ -135,9 +142,9 @@ echo
       echo ====================================
       echo
 
-#echo "How many proxy do you want to create? Example 500"
 #read COUNT
-echo -r -p "How many proxy do you want to create? Example 500:  " COUNT
+#echo -r -p "How many proxy do you want to create? Example 500:  " COUNT
+read -r -p "How many proxy do you want to create? Example 500:  " COUNT
 #COUNT=$1
 #echo $COUNT
 
@@ -165,7 +172,7 @@ start_3proxy() {
 
 #gen_autoboot
 ##bash /etc/rc.local
-gen_proxy_file_for_user
-upload_proxy
-bash ${WORKDIR}/boot_ifconfig.sh
-start_3proxy
+#gen_proxy_file_for_user
+#upload_proxy
+#bash ${WORKDIR}/boot_ifconfig.sh
+#start_3proxy
