@@ -17,11 +17,12 @@ echo #allow admin
 
 
 # HTTP(S) прокси
-echo "#auth iponly"
-echo "#allow * 1.4.8.8"
-echo "users user1:CL:user1"
-echo "flush"
-echo "allow * * * *"
+echo "auth iponly"
+echo "allow * 1.4.8.8"
+
+#echo "users user1:CL:user1"
+#echo "flush"
+#echo "allow * * * *"
 
 port=30000
 count=1
