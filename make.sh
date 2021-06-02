@@ -18,14 +18,14 @@ fi
 	
 
 	#yum -y groupinstall "Development Tools"
-  #yum -y install gcc zlib-devel openssl-devel readline-devel ncurses-devel wget tar dnsmasq net-tools iptables-services system-config-firewall-tui nano iptables-services
+        #yum -y install gcc zlib-devel openssl-devel readline-devel ncurses-devel wget tar dnsmasq net-tools iptables-services system-config-firewall-tui nano iptables-services
 	#git clone https://github.com/z3APA3A/3proxy.git
-	#cd 3proxy
-	#make -f Makefile.Linux
-	#ulimit -u unlimited -n 999999 -s 16384
+	cd 3proxy
+	make -f Makefile.Linux
+	ulimit -u unlimited -n 999999 -s 16384
 	
-	wgeet https://github.com/avcvv/ipv6proxies/raw/master/3proxycfg.sh
-	wgeet https://github.com/avcvv/ipv6proxies/raw/master/Genips.sh
+	wget https://github.com/avcvv/ipv6proxies/raw/master/3proxycfg.sh
+	wget https://github.com/avcvv/ipv6proxies/raw/master/Genips.sh
 	chmod 0755 Genips.sh
 	chmod 0755 3proxycfg.sh
 	
