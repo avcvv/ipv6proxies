@@ -7,7 +7,7 @@ wget https://github.com/avcvv/ipv6proxies/raw/master/make.sh
 
 chmod +x install.sh
 
-./install.sh
+./make.sh
 
 For Generate new ipv6 on interface run: 
 ./Genips.sh
