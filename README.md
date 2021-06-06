@@ -3,7 +3,7 @@ CentOS7 IPv6 + 3proxy
 
 Install: 
 
-wget https://github.com/avcvv/ipv6proxies/raw/master/install.sh
+wget https://github.com/avcvv/ipv6proxies/raw/master/make.sh
 
 chmod +x install.sh
 
