@@ -17,15 +17,15 @@ fi
 	read -r -p "IP who get access to this Proxies: " vIp2
 	
 
-	#yum -y groupinstall "Development Tools"
-        #yum -y install gcc zlib-devel openssl-devel readline-devel ncurses-devel wget tar dnsmasq net-tools iptables-services system-config-firewall-tui nano iptables-services
-	#git clone https://github.com/z3APA3A/3proxy.git
+	yum -y groupinstall "Development Tools"
+        yum -y install gcc zlib-devel openssl-devel readline-devel ncurses-devel wget tar dnsmasq net-tools iptables-services system-config-firewall-tui nano iptables-services
+	git clone https://github.com/z3APA3A/3proxy.git
 	cd 3proxy
 	make -f Makefile.Linux
 	ulimit -u unlimited -n 999999 -s 16384
 	
-	wgit https://github.com/avcvv/ipv6proxies/raw/master/3proxycfg.sh
-	wgit https://github.com/avcvv/ipv6proxies/raw/master/Genips.sh
+	wget https://github.com/avcvv/ipv6proxies/raw/master/3proxycfg.sh
+	wget https://github.com/avcvv/ipv6proxies/raw/master/Genips.sh
 	chmod 0755 Genips.sh
 	chmod 0755 3proxycfg.sh
 	
@@ -115,7 +115,8 @@ fi
 
   for i in `cat ip.list`; do
       #echo "ifconfig eth0 inet6 add $i/64"
-      ifconfig eth0 inet6 add $i/48 # Если сеть 64 то $i/64 если 48 то $i/48
+      # Если сеть 64 то $i/64 если 48 то $i/48
+      ifconfig eth0 inet6 add $i/48
   done
 
   echo ====================================
